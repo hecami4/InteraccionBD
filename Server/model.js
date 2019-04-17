@@ -6,7 +6,7 @@ userID: {type: String, require:true, unique:true, trim:true},
 password: {type: String, require:true, unique:false, trim:true}
 })
 
-lef UserModel = mongoose.model('Usuario',UserSchema)
-module.exports = Usuario
+let UserModel = mongoose.model('Usuario',UserSchema)
+module.exports = UserModel
 
 //mongoose.connect('mongodb://localhost/NextU')
