@@ -1,29 +1,28 @@
 const Router = require('express').Router();
 const Users = require('./model.js')
+const path = require('path')
 
-Router.get('/all', function (req, res) {
+Router.get('/', function (req, res) {
     res.sendFile('./index.html',{root: '/'});
     //res.sendFile(path.resolve('~/../client/index.html'))
 });
 
 
-Router.get('/', function (req, res) {
-   let nombre = req.query.user
-
-});
-
 Router.post('/login', function (req, res) {
   let username = req.body.user
   let pwd = req.body.pass
+  let response
   console.log("usuario: "+username+", pwd: "+pwd)
-    Usuario.findOne({userID:username,password:pwd}).exec(function(err,doc){
+    Users.findOne({"userID":username,"password":pwd}).exec(function(err,doc){
       if(err){
-        res.status(500)
-        res.json(err)
+        return res.json({status:500, error:err})
+        console.log(err)
       }
-      res.json(doc)
-      res.sendFile ('./main.html');
-    })
+      //res.json(doc)
+      console.log(doc)
+      response = "Validado"
+      res.sendFile(path.resolve(__dirname,'../client/main.html'))
+      })
 
 });
 

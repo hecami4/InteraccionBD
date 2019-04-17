@@ -18,7 +18,7 @@
         <button id="login" class="loginButton">Ingresar</button>
       </div>
     </div>
-    <script src="public/js/jquery.js"></script>
+    <script src="/public/js/jquery.js"></script>
     <script src="app.js"></script>
     <script>
         var nombreUsuario = $("#user");
@@ -27,7 +27,7 @@
             if (nombreUsuario.val() != "" && pass.val() != "") {
                 $.post('/login',{user: nombreUsuario.val(), pass: pass.val()}, function(response) {
                     if (response == "Validado") {
-                        window.location.href = "http://localhost:3000/main.html"
+                        window.location.href = "http://localhost:3000/client/main.html"
                     }
                 })
             } else {
