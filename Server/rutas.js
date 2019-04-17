@@ -1,25 +1,30 @@
 const Router = require('express').Router();
-Router.get('/all', function(req,res){
-  Users.find({}).exec(function(err,docs){
-    if(err){
-      res.status(500)
-      res.json(err)
-    }
-    res.json(docs)
-  })
-})
+const Users = require('./model.js')
+
+Router.get('/all', function (req, res) {
+    res.sendFile('./index.html',{root: '/'});
+    //res.sendFile(path.resolve('~/../client/index.html'))
+});
 
 
-Router.get('/', function(req,res){
-let nombreUsuario = req.query.nombreUsuario
-let pass = req.query.pass
-Users.findOne({user:nombreUsuario, password:pass}),exec(function(err,doc){
-  if (err){
-    res.status(500)
-    res.json(err)
-  }
-  res.json(doc)
-})
-})
+Router.get('/', function (req, res) {
+   let nombre = req.query.user
 
-module.exports = Router
+});
+
+Router.post('/login', function (req, res) {
+  let username = req.body.user
+  let pwd = req.body.pass
+  console.log("usuario: "+username+", pwd: "+pwd)
+    Usuario.findOne({userID:username,password:pwd}).exec(function(err,doc){
+      if(err){
+        res.status(500)
+        res.json(err)
+      }
+      res.json(doc)
+      res.sendFile ('./main.html');
+    })
+
+});
+
+module.exports = Router;
