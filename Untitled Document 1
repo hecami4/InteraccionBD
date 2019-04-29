@@ -1,0 +1,9 @@
+Inicia mongo
+mongod --dbpath /var/lib/mongo --storageEngine=mmapv1
+
+cuando se traba
+mongod --dbpath /var/lib/mongo --storageEngine=mmapv1 --repair
+vuelve a Iniciar
+
+nodemon
+npx nodemon
