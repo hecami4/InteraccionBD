@@ -1,7 +1,9 @@
+//librerias requeridas
 var prompt = require('prompt')
 var MongoClient = require('mongodb').MongoClient
 var user;
 var pwd;
+//crea prompt para creación de usuario
 var prompt_attributes =[{
   name : 'user',
   validator: /^[a-zA-Z\s\-]+$/,
@@ -14,7 +16,7 @@ var prompt_attributes =[{
   warning: 'pwd not valid, it can only contain letters, spaces or dashes'
   }
 ]
-
+//inicializa prompt
 prompt.start();
 prompt.get(prompt_attributes,function(err,result){
   if (err){
